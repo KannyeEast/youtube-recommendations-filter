@@ -1,212 +1,106 @@
-> \[!CAUTION]
-
+> [!CAUTION]
 > This script depends on YouTube’s internal DOM structure. If YouTube changes its layout or class names, filtering may stop working until updated. Contributions are welcome.
-
-
 
 <br>
 
-
-
 <p align="center">  
-
-&nbsp; <img src="icon.png" width="120" height="120">
-
+  <img src="icon.png" width="120" height="120">
 </p>
-
-
 
 <h1 align="center">YouTube Recommendations Filter</h1>
 
-
+<p align="center">
+  A configurable userscript that filters recommendations on YouTube based on <strong>age</strong>, <strong>duration</strong>, and <strong>views</strong>.
+</p>
 
 <p align="center">
+  <a href="#installation">Installation</a> |
+  <a href="#configuration">Configuration</a> |
+  <a href="#whitelisting">Whitelisting</a> |
+  <a href="#limitations">Limitations</a>
+</p>
 
-&nbsp; A configurable userscript that filters recommendations on YouTube based on <strong>age</strong>, <strong>duration</strong>, and <strong>views</strong>.
-
+<p align="center">
+    <img src="https://badgen.net/badge/License/MIT/blue?icon=vercel" alt="License" />
+    <img src="https://badgen.net/badge/Version/0.1/red?icon=git" alt="Version" />
 </p>
 
 
-
-<p align="center">
-
-&nbsp; <a href="#installation">Installation</a> |
-
-&nbsp; <a href="#configuration">Configuration</a> |
-
-&nbsp; <a href="#whitelisting">Whitelisting</a> |
-
-&nbsp; <a href="#limitations">Limitations</a>
-
-</p>
-
-
-
-<p align="center">
-
-&nbsp;   <img src="https://badgen.net/badge/License/MIT/blue?icon=vercel" alt="License" />
-
-&nbsp;   <img src="https://badgen.net/badge/Version/0.1/red?icon=git" alt="Version" />
-
-</p>
-
-
-
-
-
-\## Overview
-
-
+## Overview
 
 This userscript filters recommended videos on YouTube by applying configurable thresholds:
 
-
-
-\- Maximum video age (in days)
-
-\- Minimum duration (in minutes)
-
-\- Minimum view count
-
-
-
+- Maximum video age (in days)
+- Minimum duration (in minutes)
+- Minimum view count
 
 
 Inspired by:  
-
 https://github.com/kuronekozero/youtube-remove-unpopular-videos
 
+## Installation
 
-
-\## Installation
-
-
-
-\### 1. Install a Userscript Manager
-
-
+### 1. Install a Userscript Manager
 
 Install one of the following:
 
-
-
-\- \[Tampermonkey](https://www.tampermonkey.net/)
-
-> \[\[Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) | \[Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)]
-
-\- \[Violentmonkey](https://violentmonkey.github.io/)
-
-> \[\[Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) | \[Firefox](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)]
-
-
+- [Tampermonkey](https://www.tampermonkey.net/)
+> [[Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)]
+- [Violentmonkey](https://violentmonkey.github.io/)
+> [[Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)]
 
 Supported on most Chromium-based browsers and Firefox.
 
-
-
-\### 2. Install the Script
-
-
+### 2. Install the Script
 
 Install via one of the following:
 
-
-
-\- \[Direct link](href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js")
-
+- [Direct link](href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js")
 > Opening the URL in a browser with a userscript manager installed will trigger the installation prompt.
 
+- [Greasy Fork](https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter)
 
-
-\- \[Greasy Fork](https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter)
-
-
-
-> \[!IMPORTANT]
-
+> [!IMPORTANT]
 > Reload all active YouTube tabs after installation.
 
-
-
-\## Configuration
-
-
+## Configuration
 
 Edit the variables at the top of the script:
 
-
-
 ```js
-
 const maxAge = 200;      // Maximum age in days
-
 const minDuration = 5;   // Minimum duration in minutes
-
 const minViews = 1000;   // Minimum view count
-
 ```
 
-
-
-> \[!NOTE]
-
+> [!NOTE]
 > A configuration UI is planned for a future version.
-
 > Whitelisting logic may be adjusted once UI routing is introduced.
 
-
-
-\## Whitelisting
-
-
+## Whitelisting
 
 Filtering is disabled on these subpages:
 
+- /feed/
+> *Subscriptions*
+- /channel/
+- /@
+> *Channels*
 
+All other https://www.youtube.com/* routes are processed.
 
-\- /feed/
+## Limitations
 
-> \*Subscriptions\*
+- Age calculation uses approximations (30 days/month, 365 days/year)
 
-\- /channel/
+- Parsing assumes English UI formatting (views, K, M, B, ago)
 
-\- /@
+- Minor visual flicker may occur due to post-render filtering
 
-> \*Channels\*
+- Dependent on YouTube’s internal class names and markup structure
 
-
-
-All other https://www.youtube.com/\* routes are processed.
-
-
-
-\## Limitations
-
-
-
-\- Age calculation uses approximations (30 days/month, 365 days/year)
-
-
-
-\- Parsing assumes English UI formatting (views, K, M, B, ago)
-
-
-
-\- Minor visual flicker may occur due to post-render filtering
-
-
-
-\- Dependent on YouTube’s internal class names and markup structure
-
-
-
-\## Contributing
-
-
+## Contributing
 
 Issues and pull requests are accepted.
 
-
-
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
-
