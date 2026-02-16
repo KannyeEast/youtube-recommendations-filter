@@ -22,7 +22,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/license/KannyeEast/youtube-recommendations-filter" alt="License" />
-    <img src="https://img.shields.io/github/v/release/KannyeEast/youtube-recommendations-filter" alt="Release" />
+    <img src="https://badgen.net/badge/Version/0.1/red?icon=git" alt="Version" />
 </p>
 
 ---
@@ -127,5 +127,6 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
 
