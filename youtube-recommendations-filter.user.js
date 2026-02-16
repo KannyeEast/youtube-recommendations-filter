@@ -137,7 +137,7 @@
         );
 
         // Exit early if any of the entries isnt valid
-        if (duration == null && age == null && views == null) {
+        if (duration == null || age == null || views == null) {
             item.classList.add("filter-failed");
             return null;
         }
@@ -235,3 +235,4 @@
         runCheck();
     }, 1000);
 })();
+
