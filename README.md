@@ -91,7 +91,7 @@ const minViews = 1000;   // Minimum view count
 ```
 
 > [!NOTE]
-> A configuration UI is planned for a future version.
+> A configuration UI is planned for a future version.\
 > Whitelisting logic may be adjusted once UI routing is introduced.
 
 ---
@@ -127,6 +127,7 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
 
 
