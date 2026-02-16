@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This script depends on YouTube’s internal DOM structure. If YouTube changes its layout or class names, filtering may stop working until updated. Contributions are welcome.
+> This script depends on YouTube’s internal DOM structure. If YouTube changes its layout or class names, filtering may stop working until updated.
 
 <br>
 
@@ -55,7 +55,7 @@ Supported on most Chromium-based browsers and Firefox.
 
 Install via one of the following:
 
-- [Direct link](href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js")
+- [Direct link](https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js)
 > Opening the URL in a browser with a userscript manager installed will trigger the installation prompt.
 
 - [Greasy Fork](https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter)
@@ -104,3 +104,4 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
