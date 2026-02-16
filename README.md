@@ -4,7 +4,7 @@
 <br>
 
 <p align="center">  
-  <img src="icon.png" width="120" height="120">
+  <img src="icon.png" width="256" height="256">
 </p>
 
 <h1 align="center">YouTube Recommendations Filter</h1>
@@ -21,12 +21,13 @@
 </p>
 
 <p align="center">
-    <img src="https://badgen.net/badge/License/MIT/blue?icon=vercel" alt="License" />
-    <img src="https://badgen.net/badge/Version/0.1/red?icon=git" alt="Version" />
+    <img src="https://img.shields.io/github/license/KannyeEast/youtube-recommendations-filter" alt="License" />
+    <img src="https://img.shields.io/github/v/release/KannyeEast/youtube-recommendations-filter" alt="Release" />
 </p>
 
+---
 
-## Overview
+# Overview
 
 This userscript filters recommended videos on YouTube by applying configurable thresholds:
 
@@ -38,16 +39,27 @@ This userscript filters recommended videos on YouTube by applying configurable t
 Inspired by:  
 https://github.com/kuronekozero/youtube-remove-unpopular-videos
 
-## Installation
+---
+
+# Installation
 
 ### 1. Install a Userscript Manager
 
 Install one of the following:
 
-- [Tampermonkey](https://www.tampermonkey.net/)
-> [[Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)]
-- [Violentmonkey](https://violentmonkey.github.io/)
-> [[Chrome](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) | [Firefox](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)]
+<a href="https://www.tampermonkey.net/"><img src="https://img.shields.io/badge/Tampermonkey-000000?style=for-the-badge&logo=tampermonkey&logoColor=#00485B"/></a>
+> <p>
+>  <a href="https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/"><img src="https://img.shields.io/badge/Firefox-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=#FF7139"/></a>
+>  <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en/"><img src="https://img.shields.io/badge/Chrome-000000?style=for-the-badge&logo=googlechrome&logoColor=white"/></a>
+> </p>
+
+<br>
+
+<a href="https://violentmonkey.github.io/"><img src="https://img.shields.io/badge/Violentmonkey-000000?style=for-the-badge&logo=violentmonkey&logoColor=#FF7139"/></a>
+> <p>
+>  <a href="https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/"><img src="https://img.shields.io/badge/Firefox-000000?style=for-the-badge&logo=firefoxbrowser&logoColor=#FF7139"/></a>
+>  <a href="https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag"><img src="https://img.shields.io/badge/Chrome-000000?style=for-the-badge&logo=googlechrome&logoColor=white"/></a>
+> </p>
 
 Supported on most Chromium-based browsers and Firefox.
 
@@ -55,15 +67,20 @@ Supported on most Chromium-based browsers and Firefox.
 
 Install via one of the following:
 
-- [Direct link](https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js)
+<a href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js"><img src="https://img.shields.io/badge/Direct_Link-000000?style=for-the-badge&logo=accenture&logoColor=#670000"/></a>
 > Opening the URL in a browser with a userscript manager installed will trigger the installation prompt.
 
-- [Greasy Fork](https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter)
+<br>
+
+<a href="https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter"><img src="https://img.shields.io/badge/Greasyfork-000000?style=for-the-badge&logo=greasyfork&logoColor=#670000"/></a>
+
 
 > [!IMPORTANT]
 > Reload all active YouTube tabs after installation.
 
-## Configuration
+---
+
+# Configuration
 
 Edit the variables at the top of the script:
 
@@ -77,7 +94,9 @@ const minViews = 1000;   // Minimum view count
 > A configuration UI is planned for a future version.
 > Whitelisting logic may be adjusted once UI routing is introduced.
 
-## Whitelisting
+---
+
+# Whitelisting
 
 Filtering is disabled on these subpages:
 
@@ -89,19 +108,24 @@ Filtering is disabled on these subpages:
 
 All other https://www.youtube.com/* routes are processed.
 
-## Limitations
+---
+
+# Limitations
 
 - Age calculation uses approximations (30 days/month, 365 days/year)
 
-- Parsing assumes English UI formatting (views, K, M, B, ago)
+- Parsing assumes English UI formatting
 
 - Minor visual flicker may occur due to post-render filtering
 
 - Dependent on YouTube’s internal class names and markup structure
 
-## Contributing
+---
+
+# Contributing
 
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
