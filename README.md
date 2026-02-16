@@ -43,7 +43,7 @@ https://github.com/kuronekozero/youtube-remove-unpopular-videos
 
 # Installation
 
-### 1. Install a Userscript Manager
+## 1. Install a Userscript Manager
 
 Install one of the following:
 
@@ -63,17 +63,14 @@ Install one of the following:
 
 Supported on most Chromium-based browsers and Firefox.
 
-### 2. Install the Script
+## 2. Install the Script
 
 Install via one of the following:
 
-<a href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js"><img src="https://img.shields.io/badge/Direct_Link-000000?style=for-the-badge&logo=accenture&logoColor=#670000"/></a>
-> Opening the URL in a browser with a userscript manager installed will trigger the installation prompt.
-
-<br>
-
-<a href="https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter"><img src="https://img.shields.io/badge/Greasyfork-000000?style=for-the-badge&logo=greasyfork&logoColor=#670000"/></a>
-
+<p>
+  <a href="https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js"><img src="https://img.shields.io/badge/Direct_Link-000000?style=for-the-badge&logo=accenture&logoColor=#670000"/></a>
+  <a href="https://greasyfork.org/en/scripts/566462-youtube-recommendations-filter"><img src="https://img.shields.io/badge/Greasyfork-000000?style=for-the-badge&logo=greasyfork&logoColor=#670000"/></a>
+</p>
 
 > [!IMPORTANT]
 > Reload all active YouTube tabs after installation.
@@ -127,6 +124,7 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
 
 
