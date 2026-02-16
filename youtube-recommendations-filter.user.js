@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         youtube-recommendations-filter
 // @namespace    https://github.com/KannyeEast/youtube-recommendations-filter/
-// @version      0.1
+// @version      0.1.1
 // @description  Filter your YouTube recommendations based on age, duration and views
 // @author       https://github.com/KannyeEast
 // @match        https://www.youtube.com/*
 // @icon         https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/icon.png
 // @downloadURL	 https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js
-// @updateURL	 https://github.com/KannyeEast/youtube-recommendations-filter/raw/main/youtube-recommendations-filter.user.js
 // @grant        GM_addStyle
 // @run-at       document-idle
 // @license      MIT
@@ -235,4 +234,5 @@
         runCheck();
     }, 1000);
 })();
+
 
