@@ -37,8 +37,8 @@ This userscript filters recommended videos on YouTube by applying configurable t
 
 
 Inspired by:  
-https://github.com/kuronekozero/youtube-remove-unpopular-videos
-https://addons.mozilla.org/en-US/firefox/addon/youtube-video-filter/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
+- [youtube-remove-unpopular-videos](https://github.com/kuronekozero/youtube-remove-unpopular-videos)
+- [youtube-video-filter](https://addons.mozilla.org/en-US/firefox/addon/youtube-video-filter/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
 ---
 
@@ -125,6 +125,7 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
 
 
