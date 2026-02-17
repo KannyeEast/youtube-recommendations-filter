@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         youtube-recommendations-filter
 // @namespace    https://github.com/KannyeEast/youtube-recommendations-filter/
-// @version      0.1.1
+// @version      0.2
 // @description  Filter your YouTube recommendations based on age, duration and views
 // @author       https://github.com/KannyeEast
 // @match        https://www.youtube.com/*
@@ -17,9 +17,25 @@
     'use strict';
 
     // User variables
-    const maxAge = 200; // Days
-    const minDuration = 5; // Minutes
-    const minViews = 1000;
+    let config = {
+        maxAge: 200, // Days
+        minDuration: 5, // Minutes
+        minViews: 1000
+    };
+
+    const SELECTORS = {
+        video: {
+            stats: "span.yt-content-metadata-view-model__metadata-text",
+            duration: "div.yt-badge-shape__text"
+        },
+        whitelist: {
+            // Subscription
+            sub: "/feed/",
+            // Channels
+            channel: "/channel",
+            channel_handle: "/@"
+        }
+    };
 
     GM_addStyle(`
         .filtered-video-hidden {
@@ -27,123 +43,96 @@
         }
     `);
 
-    // Extract the relevant content
-    const extractData = function(metadata, checkMatch) {
-        for (const data of metadata) {
-            if (data.textContent && data.textContent.includes(checkMatch)) {
-                return data;
-            }
+    // Extract correct nodes based on regex
+    const extractMatch = function(nodes, regex) {
+        for (const node of nodes) {
+            const text = node.textContent?.trim()
+            if (!text) continue;
+
+            const match = text.match(regex);
+            if (match) return match;
         }
 
         return null;
     }
+
+    // Age filter
+    const parseAgeToDays = function(match) {
+        if (!match) return null;
+
+        const value = Number(match[1]);
+        const unit = match[2].toLowerCase();
+
+        const multipliers = {
+            second: 0,
+            minute: 0,
+            hour:   0,
+            day:    1,
+            week:   7,
+            month:  30,
+            year:   365
+        };
+
+        // If value is valid return value multiplied by correct time frame, otherwise return null
+        return multipliers[unit] !== undefined ? value * multipliers[unit] : null;
+    };
+
 
     // Duration Filter
-    const parseDurationToMinutes = function(data) {
-        if (data) {
-            const text = data.textContent.trim();
-            const value = text.split(':').map(Number);
+    const parseDurationToMinutes = function(match) {
+        if (!match) return null;
 
-            if (value) {
-                switch (value.length) {
-                    case 2:
-                        return value[0]; // MM:SS
-                    case 3:
-                        return value[0] * 60 + value[1]; // HH:MM:SS
-                }
-            }
+        const parts = match[0].split(":").map(Number);
+
+        switch (parts.length) {
+            case 2:
+                return parts[0];
+            case 3:
+                return parts[0] * 60 + parts[1];
+            default:
+                return null;
         }
-
-        return null;
-    }
-
-    // Age Filter
-    const parseAgeToDays = function(span) {
-        if (span) {
-            const text = span.textContent.trim();
-            const match = text.match(/(\d+)\s*(second|minute|hour|day|week|month|year)s?\s*ago/i);
-
-            if (match) {
-                const value = parseInt(match[1], 10);
-                const unit = match[2].toLowerCase();
-
-                switch (unit) {
-                    case "second":
-                    case "minute":
-                    case "hour":
-                        return 0;
-                    case 'day':
-                        return value;
-                    case 'week':
-                        return value * 7;
-                    case 'month':
-                        return value * 30;
-                    case 'year':
-                        return value * 365;
-                    default:
-                        return null;
-                }
-            }
-        }
-        return null;
-    }
+    };
 
     // View Filter
-    const parseViewCount = function(span){
-        if (span) {
-            const text = span.textContent.trim();
+    const parseViewCount = function(match) {
+        if (!match) return null;
 
-            if (text.toLowerCase().includes("no views")) {
-                return 0;
-            }
+        let value = parseFloat(match[1].replace(/,/g, ''));
+        const unit = match[2] ? match[2].toUpperCase() : null;
 
-            const match = text.match(/([\d,.]+)\s*(K|M|B)?\s*views/i);
+        const multipliers = {
+            K: 1e3, // Thousand
+            M: 1e6, // Million
+            B: 1e9 // Billion
+        };
 
-            if (match) {
-                let value = parseFloat(match[1].replace(/,/g, ''));
-                const unit = match[2] ? match[2].toUpperCase() : null;
-
-                switch(unit) {
-                    case 'K':
-                        return value * 1e3;
-                    case 'M':
-                        return value * 1e6;
-                    case 'B':
-                        return value * 1e9;
-                    default:
-                        return value;
-                }
-            }
-        }
-
-        return null;
+        // Same as age parsing, except as default we return the base value (so anything <1000), as that value is already correct
+        return multipliers[unit] ? value * multipliers[unit] : value;
     };
 
     // Checks each entry against the user chosen cutoff points and applies the filter accordingly
     const applyFilters = function(item) {
-        const metadataSpans = item.querySelectorAll("span.yt-content-metadata-view-model__metadata-text");
-        const timeDiv = item.querySelectorAll("div.yt-badge-shape__text");
-
-        const duration = parseDurationToMinutes(
-            extractData(timeDiv, ":")
+        const age = parseAgeToDays(
+            extractMatch(item.querySelectorAll(SELECTORS.video.stats), /(\d+)\s*(second|minute|hour|day|week|month|year)s?\s*ago/i)
         );
 
-        const age = parseAgeToDays(
-            extractData(metadataSpans, "ago")
+        const duration = parseDurationToMinutes(
+            extractMatch(item.querySelectorAll(SELECTORS.video.duration), /^\s*(\d{1,2}:)?\d{1,2}:\d{2}\s*$/)
         );
 
         const views = parseViewCount(
-            extractData(metadataSpans, "views")
+            extractMatch(item.querySelectorAll(SELECTORS.video.stats), /([\d,.]+)\s*(K|M|B)?\s*views/i)
         );
 
         // Exit early if any of the entries isnt valid
         if (duration == null || age == null || views == null) {
             item.classList.add("filter-failed");
-            return null;
+            return;
         }
 
         // Actual check
-        if (duration < minDuration || age > maxAge || views < minViews) {
+        if (duration < config.minDuration || age > config.maxAge || views < config.minViews) {
             item.classList.add("filtered-video-hidden");
         }
 
@@ -187,6 +176,7 @@
             path.includes("/channel/") ||
             path.includes("/@")
         ) {
+            resetFilters(); // Site changes are detected before actual new content loads -> whitelisted site gets filtered, so we need to remove them once we go back
             return false;
         }
 
