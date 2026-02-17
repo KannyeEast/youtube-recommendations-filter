@@ -22,7 +22,7 @@
 
 <p align="center">
     <a href="./LICENSE"><img src="https://img.shields.io/github/license/KannyeEast/youtube-recommendations-filter?style=for-the-badge" alt="License" /></a>
-    <img src="https://img.shields.io/badge/version-0.1-red?style=for-the-badge" alt="Version" />
+    <img src="https://img.shields.io/badge/version-0.2-red?style=for-the-badge" alt="Version" />
 </p>
 
 ---
@@ -38,6 +38,7 @@ This userscript filters recommended videos on YouTube by applying configurable t
 
 Inspired by:  
 https://github.com/kuronekozero/youtube-remove-unpopular-videos
+https://addons.mozilla.org/en-US/firefox/addon/youtube-video-filter/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
 
 ---
 
@@ -124,6 +125,7 @@ All other https://www.youtube.com/* routes are processed.
 Issues and pull requests are accepted.
 
 YouTube frequently modifies its frontend structure. If filtering stops working, selector updates or parsing adjustments may be required.
+
 
 
 
